@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daphne D. Roseque — SEO Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #0a0a0f;
+    --darker: #050508;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --white: #f5f0e8;
+    --muted: #7a7a8a;
+    --card: #111118;
+    --border: rgba(201,168,76,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 60px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: 'SEO';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 220px;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,168,76,0.08);
+    pointer-events: none;
+    letter-spacing: -10px;
+  }
+
+  .hero-inner { max-width: 900px; position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 6px 18px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 30px;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 50px;
+    line-height: 1.8;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-contacts {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .hero-contacts a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .hero-contacts a:hover { opacity: 1; color: var(--gold); }
+
+  .hero-contacts a::before {
+    content: '→';
+    color: var(--gold);
+  }
+
+  /* STATS BAR */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat {
+    padding: 50px 40px;
+    border-right: 1px solid var(--border);
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 60px; border-bottom: 1px solid var(--border); }
+
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 60px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.9;
+  }
+
+  .about-text p strong { color: var(--white); font-weight: 500; }
+
+  .skills-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .skill-item:hover {
+    border-color: var(--gold);
+    transform: translateX(8px);
+  }
+
+  .skill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .skill-name { font-size: 14px; font-weight: 500; }
+
+  /* EXPERIENCE */
+  .experience-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-meta { padding-right: 40px; border-right: 1px solid var(--border); }
+
+  .exp-client {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+
+  .exp-role {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .exp-period {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .exp-tasks {
+    padding-left: 40px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .exp-tasks li {
+    font-size: 15px;
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .exp-tasks li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .project-card {
+    background: var(--card);
+    padding: 40px;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--gold);
+    transition: height 0.4s ease;
+  }
+
+  .project-card:hover::before { height: 100%; }
+  .project-card:hover { border-color: rgba(201,168,76,0.3); }
+
+  .project-niche {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .project-goal {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* TOOLS */
+  .tools-section { background: var(--darker); }
+
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tool-tag {
+    padding: 12px 24px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .tool-tag:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  /* INDUSTRIES */
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .industry-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 30px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .industry-icon {
+    font-size: 24px;
+    width: 48px;
+    text-align: center;
+  }
+
+  .industry-name { font-size: 15px; font-weight: 500; }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    background: var(--darker);
+    padding: 120px 60px;
+    border-bottom: none;
+  }
+
+  .cta-section .section-title { margin-bottom: 30px; }
+
+  .cta-desc {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 50px;
+  }
+
+  .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 40px;
+    background: var(--gold);
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 40px;
+    border: 1px solid var(--border);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+  @media (max-width: 768px) {
+    .hero { padding: 60px 30px; }
+    section { padding: 60px 30px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .exp-item { grid-template-columns: 1fr; gap: 20px; }
+    .exp-meta { border-right: none; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+    .exp-tasks { padding-left: 0; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .industries-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">SEO Specialist · 11+ Years Experience</span>
+    <h1>Daphne D.<br><em>Roseque</em></h1>
+    <p class="hero-desc">Off-page SEO specialist doing the unglamorous work — hand-picking prospects, building citations, managing the daily grind so clients don't have to. No shortcuts. No spam blasts. Just clean, manual execution.</p>
+    <div class="hero-contacts">
+      <a href="mailto:msdaphnedroseque@gmail.com">msdaphnedroseque@gmail.com</a>
+      <a href="https://www.onlinejobs.ph/jobseekers/info/100337" target="_blank">OLJ Profile</a>
+      <a href="#">Discord: missdaphyang</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">11+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">6+</div>
+    <div class="stat-label">Clients Served</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Countries Supported</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Manual Execution</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+  <span class="section-tag">About</span>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="section-title" style="margin-bottom:30px;">The Work Behind<br>Good Rankings</h2>
+      <p>Behind every good SEO campaign is someone doing the <strong>unglamorous work</strong> — checking spreadsheets, vetting websites, sending follow-up emails, and making sure citations match perfectly.</p>
+      <p>My process is manual at its core. I use tools like <strong>Ahrefs, SEMrush, BuzzStream, Google Search Console, and Screaming Frog</strong> to gather data and find opportunities.</p>
+      <p>The actual strategy, vetting, and execution remain <strong>100% manual</strong>. You send me a task, you get a clean update, and the work gets done properly — without the back-and-forth drama.</p>
+    </div>
+    <div>
+      <div class="skills-list">
+        <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Manual Link Building — hand-picked, personally vetted</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Local SEO — Citations, NAP consistency, GBP optimization</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Digital PR — Outreach & real placements</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Keyword Research & Content Mapping</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">On-Page SEO — Meta, headings, internal linking</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Social Media Management & Engagement</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Competitor Research & Data Gathering</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section>
+  <span class="section-tag">Experience</span>
+  <h2 class="section-title">Work History</h2>
+  <div class="experience-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-client">Chris White</div>
+        <div class="exp-role">SEO — Link Building</div>
+        <div class="exp-period">Roar Solutions Inc. · Dec 2013 – Present</div>
+      </div>
+      <ul class="exp-tasks">
+        <li>Supported SEO campaigns through strategic link building tasks</li>
+        <li>Managed link placements and ensured backlink portfolio integrity</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-client">Roger Wehbe</div>
+        <div class="exp-role">SEO — Link Building & KW Research</div>
+        <div class="exp-period">RJW · Jul 2020 – Mar 2026</div>
+      </div>
+      <ul class="exp-tasks">
+        <li>Conducted keyword research and identified search opportunities</li>
+        <li>Executed link building including backlink prospecting and outreach</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-client">Chris Rogers</div>
+        <div class="exp-role">SEO Assistant</div>
+        <div class="exp-period">Local Lead Gen Solutions · Mar 2020 – Nov 2022</div>
+      </div>
+      <ul class="exp-tasks">
+        <li>Executed strategic link building initiatives</li>
+        <li>Managed citations for local SEO campaigns</li>
+        <li>Supported SEO operations across multiple websites</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-client">Graeme Stephens</div>
+        <div class="exp-role">Social Media & SEO Support</div>
+        <div class="exp-period">Steam 'n Dry · Nov 2017 – Dec 2019</div>
+      </div>
+      <ul class="exp-tasks">
+        <li>Managed and scheduled social media posts across platforms</li>
+        <li>Performed link building and backlink prospecting</li>
+        <li>Assisted with on-page SEO including meta tags and content updates</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-client">Francois Painchaud</div>
+        <div class="exp-role">Off-Page SEO</div>
+        <div class="exp-period">CodeSpark · Mar 2014 – Feb 2018</div>
+      </div>
+      <ul class="exp-tasks">
+        <li>Monitored and generated traffic, conversions & keyword rankings</li>
+        <li>Link building and reporting</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-client">Eli Kim</div>
+        <div class="exp-role">Social Media Management</div>
+        <div class="exp-period">EDK Enterprises / Bubzi Co. · Sep 2012 – Feb 2018</div>
+      </div>
+      <ul class="exp-tasks">
+        <li>Managed X, Facebook, Instagram, and Pinterest accounts</li>
+        <li>Monitored brand presence and engaged with users, growing 8,000+ likes</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section>
+  <span class="section-tag">Sample Work</span>
+  <h2 class="section-title">SEO Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-niche">Health & Fitness · Australia</div>
+      <div class="project-goal">Local SEO + Off-Page Link Building</div>
+      <div class="project-desc">Technical audit, link building & citations, GBP optimization, blog performance via metadata & internal linking, keyword research and content gap analysis.</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-niche">Business Adviser & Accounting · UK</div>
+      <div class="project-goal">Organic Traffic & Lead Generation</div>
+      <div class="project-desc">Lead generation management, comprehensive technical audit, staging website optimization, link building campaigns.</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-niche">Affiliate Coupon · Thailand</div>
+      <div class="project-goal">Page 1 Rankings in Thailand</div>
+      <div class="project-desc">Keyword research, site audit, off-page link building, content promotion. Supervised a Thai VA for local translations. Achieved Page 1 Google Thailand within 1 year of launch.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section">
+  <span class="section-tag">Tools & Tech</span>
+  <h2 class="section-title" style="margin-bottom:40px;">What I Work With</h2>
+  <div class="tools-grid">
+    <span class="tool-tag">Ahrefs</span>
+    <span class="tool-tag">SEMrush</span>
+    <span class="tool-tag">BuzzStream</span>
+    <span class="tool-tag">Google Search Console</span>
+    <span class="tool-tag">Screaming Frog</span>
+    <span class="tool-tag">Google Business Profile</span>
+    <span class="tool-tag">Yoast SEO</span>
+    <span class="tool-tag">WordPress</span>
+    <span class="tool-tag">Google Analytics</span>
+    <span class="tool-tag">AI (outreach drafting)</span>
+    <span class="tool-tag">Citation Tools</span>
+    <span class="tool-tag">GeoImgr</span>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section>
+  <span class="section-tag">Industries</span>
+  <h2 class="section-title" style="margin-bottom:40px;">Who I've Worked With</h2>
+  <div class="industries-grid">
+    <div class="industry-item">
+      <div class="industry-icon">🏠</div>
+      <div class="industry-name">Service-based businesses (cleaning, trades, home services)</div>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">🛒</div>
+      <div class="industry-name">E-commerce</div>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">🏢</div>
+      <div class="industry-name">Digital agencies (white-label support)</div>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">📍</div>
+      <div class="industry-name">Local businesses — AU, CA, NZ, US</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <span class="section-tag">Let's Work Together</span>
+  <h2 class="section-title">Ready to Get the<br><em style="color:var(--gold);font-style:normal;">Work Done?</em></h2>
+  <p class="cta-desc">I don't overpromise. I just focus on executing the daily grind of SEO so you don't have to.</p>
+  <div class="cta-buttons">
+    <a href="mailto:msdaphnedroseque@gmail.com" class="btn-primary">Send an Email →</a>
+    <a href="https://www.onlinejobs.ph/jobseekers/info/100337" target="_blank" class="btn-secondary">View OLJ Profile</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Daphne D. Roseque</div>
+  <div>SEO Specialist · Link Building · Local SEO · Since 2012</div>
+  <div>Discord: missdaphyang</div>
+</footer>
+
+</body>
+</html>
